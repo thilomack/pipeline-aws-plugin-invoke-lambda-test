@@ -10,6 +10,7 @@ Resources:
           var response = require('cfn-response');
           exports.handler = function(event, context, callback) {
             var input = event.Value;
+            console.log("H\u00e4llo from Lambda!");
             var responseData = {Value: input * 42};
             callback(null, responseData);
           };
