@@ -15,6 +15,21 @@ Resources:
             callback(null, responseData);
           };
       Runtime: "nodejs4.3"
+  FailingLambda:
+    Type: "AWS::Lambda::Function"
+    Properties:
+      Handler: "index.handler"
+      Role: !GetAtt LambdaExecutionRole.Arn
+      Code:
+        ZipFile: >
+          var response = require('cfn-response');
+          exports.handler = function(event, context, callback) {
+            var input = event.Value;
+            console.log("H\u00e4llo from Lambda!");
+            var responseData = {Value: input * 42};
+            callback(responseData);
+          };
+      Runtime: "nodejs4.3"
   LambdaExecutionRole:
     Type: AWS::IAM::Role
     Properties:
@@ -40,5 +55,7 @@ Resources:
 Outputs:
   Lambda:
     Value: !Ref  Lambda
+  FailingLambda:
+    Value: !Ref  FailingLambda
   Region:
     Value: !Sub "Region: ${AWS::Region}"

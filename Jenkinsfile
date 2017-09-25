@@ -10,6 +10,12 @@ node {
     if (result.Value != 84) {
       error("Wrong value: $result")
     }
+    try {
+        def result2 = invokeLambda(functionName: outputs.FailingLambda , payload: [ "Value": "2" ] )
+        println result2
+    } catch (RuntimeException e) {
+        println e
+    }
   } finally {
     cfnDelete(stack:'invoke-lambda-test-stack')
   }
