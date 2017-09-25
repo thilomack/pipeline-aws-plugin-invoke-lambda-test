@@ -16,6 +16,12 @@ node {
     } catch (RuntimeException e) {
         println e
     }
+    try {
+        def result2 = invokeLambda(functionName: outputs.BrokenLambda , payload: [ "Value": "2" ] )
+        println result2
+    } catch (RuntimeException e) {
+        println e
+    }
   } finally {
     cfnDelete(stack:'invoke-lambda-test-stack')
   }
