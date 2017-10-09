@@ -26,8 +26,7 @@ Resources:
           exports.handler = function(event, context, callback) {
             var input = event.Value;
             console.log("H\u00e4llo from Lambda!");
-            var responseData = {Value: input * 42};
-            callback(responseData);
+            callback("failed!");
           };
       Runtime: "nodejs4.3"
   BrokenLambda:
@@ -39,7 +38,7 @@ Resources:
         ZipFile: >
           var response = require('cfn-response');
           exports.handler = function(event, context, callback) {
-            var input = 
+            var input =
           };
       Runtime: "nodejs4.3"
   LambdaExecutionRole:
