@@ -11,6 +11,9 @@ node {
     if (result.Value != 84) {
       error("Wrong value: $result")
     }
+    if (result.Nested.Value != 2) {
+      error("Wrong nested value: $result")
+    }
     try {
         println "=== FailingLambda ==="
         def result2 = invokeLambda(functionName: outputs.FailingLambda , payload: [ "Value": "2" ] )
